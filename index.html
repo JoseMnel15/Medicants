@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Catálogo de Perfumes</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1380",
+                        "background-light": "#fcf8fa",
+                        "background-dark": "#221019",
+                        "text-light": "#1b0d14",
+                        "text-dark": "#fcf8fa",
+                        "subtle-light": "#f3e7ed",
+                        "subtle-dark": "#3a2531",
+                        "subtle-text-light": "#9a4c73",
+                        "subtle-text-dark": "#c198ae"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+        
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+    <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <header class="flex items-center justify-between p-4 border-b border-subtle-light dark:border-subtle-dark">
+            <button class="p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+            <div class="text-center">
+                <h1 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Medicants</h1>
+                <p class="text-xs text-subtle-text-light dark:text-subtle-text-dark">Tu Esencia Perfecta</p>
+            </div>
+            <button class="p-2">
+<span class="material-symbols-outlined">search</span>
+</button>
+        </header>
+        <div class="@container">
+            <div class="px-4 py-4">
+                <div class="flex min-h-[200px] flex-col gap-4 bg-cover bg-center bg-no-repeat items-center justify-center p-4 rounded-lg" data-alt="Una composición estilizada de frascos de perfume con una iluminación suave y elegante." style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("img/portada.png");'>
+                    <div class="flex flex-col gap-2 text-center">
+                        <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em]">
+                            CATALAGO 2025
+                        </h2>
+                        <p class="text-white text-sm font-normal leading-normal">
+                            Hasta 10% de descuento
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <main class="flex flex-col gap-6 w-full">
+            <section class="flex flex-col w-full px-4">
+                <h2 class="text-text-light dark:text-text-dark text-xl font-bold text-center tracking-[-0.015em] pb-4 pt-2">Productos Populares</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="DetallleValentino.html" class="block no-underline">
+                        <div class="flex flex-col text-center">
+                            <div class="w-full bg-subtle-light/60 dark:bg-subtle-dark/60 rounded-lg flex items-center justify-center p-2 mb-3">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover bg-transparent" data-alt="Frasco de perfume Valentino Uomo Born In Roma Intense sobre una superficie reflectante." style='background-image: url("img/Valentino-uomo-intense-1802x2048_preview_rev_1.png");'>
+                                </div>
+                            </div>
+                            <h3 class="text-text-light dark:text-text-dark text-sm font-bold leading-tight">Valentino Uomo Born In Roma Intense</h3>
+                            <p class="text-subtle-text-light dark:text-subtle-text-dark text-xs font-normal leading-normal">por Valentino</p>
+                            <p class="text-text-light dark:text-text-dark text-xs font-normal leading-normal mt-1">10ml</p>
+                            <div class="mt-1.5 inline-flex h-6 items-center justify-center rounded-md bg-subtle-light dark:bg-subtle-dark px-2 py-1 text-xs font-medium text-subtle-text-light dark:text-subtle-text-dark mx-auto">Hombres</div>
+                        </div>
+                    </a>
+
+                    <a href="DetallleJPGlebleparfum.html" class="block no-underline">
+                        <div class="flex flex-col text-center">
+                            <div class="w-full bg-subtle-light/60 dark:bg-subtle-dark/60 rounded-lg flex items-center justify-center p-2 mb-3">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover bg-transparent" data-alt="Frasco de perfume Jean Paul Gaultier Le Beau Le Parfum con un fondo oscuro y dramático." style='background-image: url("img/Le-Beau-Le-Parfum-125ml-EDP_preview_rev_1.png");'>
+                                </div>
+                            </div>
+                            <h3 class="text-text-light dark:text-text-dark text-sm font-bold leading-tight">Jean Paul Gaultier Le Beau Le Parfum</h3>
+                            <p class="text-subtle-text-light dark:text-subtle-text-dark text-xs font-normal leading-normal">por Jean Paul Gaultier</p>
+                            <p class="text-text-light dark:text-text-dark text-xs font-normal leading-normal mt-1">10ml</p>
+                            <div class="mt-1.5 inline-flex h-6 items-center justify-center rounded-md bg-subtle-light dark:bg-subtle-dark px-2 py-1 text-xs font-medium text-subtle-text-light dark:text-subtle-text-dark mx-auto">Hombres</div>
+                        </div>
+                    </a>
+                    <a href="DetallleJPGlemaleabsolu.html" class="block no-underline">
+                        <div class="flex flex-col text-center">
+                            <div class="w-full bg-subtle-light/60 dark:bg-subtle-dark/60 rounded-lg flex items-center justify-center p-2 mb-3">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover bg-transparent" data-alt="Frasco del perfume Jean Paul Gaultier Le Male Elixir Absolu con fondo oscuro y detalles dorados." style='background-image: url("img/LE-MALE-ELIXIR-ABSOLU-1802x2048_preview_rev_1.png");'>
+                                </div>
+                            </div>
+                            <h3 class="text-text-light dark:text-text-dark text-sm font-bold leading-tight">Jean Paul Gaultier Le Male Elixir Absolu</h3>
+                            <p class="text-subtle-text-light dark:text-subtle-text-dark text-xs font-normal leading-normal">por Jean Paul Gaultier</p>
+                            <p class="text-text-light dark:text-text-dark text-xs font-normal leading-normal mt-1">10ml</p>
+                            <div class="mt-1.5 inline-flex h-6 items-center justify-center rounded-md bg-subtle-light dark:bg-subtle-dark px-2 py-1 text-xs font-medium text-subtle-text-light dark:text-subtle-text-dark mx-auto">Hombres</div>
+                        </div>
+                    </a>
+
+                    <a href="DetallleScandalEDP.html" class="block no-underline">
+                        <div class="flex flex-col text-center">
+                            <div class="w-full bg-subtle-light/60 dark:bg-subtle-dark/60 rounded-lg flex items-center justify-center p-2 mb-3">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover bg-transparent" data-alt="Frasco del perfume Jean Paul Gaultier Scandal Pour Homme Le Parfum con fondo oscuro y reflejos metálicos." style='background-image: url("img/Scandal-Le-Parfum-Jean-Paul-Gaultier-100ml-Eau-de-Parfum-EDP_preview_rev_1.png");'>
+                                </div>
+                            </div>
+                            <h3 class="text-text-light dark:text-text-dark text-sm font-bold leading-tight">Jean Paul Gaultier Scandal Pour Homme Le Parfum</h3>
+                            <p class="text-subtle-text-light dark:text-subtle-text-dark text-xs font-normal leading-normal">por Jean Paul Gaultier</p>
+                            <p class="text-text-light dark:text-text-dark text-xs font-normal leading-normal mt-1">10ml</p>
+                            <div class="mt-1.5 inline-flex h-6 items-center justify-center rounded-md bg-subtle-light dark:bg-subtle-dark px-2 py-1 text-xs font-medium text-subtle-text-light dark:text-subtle-text-dark mx-auto">Hombres</div>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+            <div class="px-4 pt-2 pb-8">
+                <a href="catalago.html" class="w-full h-12 flex items-center justify-center rounded-lg bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark font-bold">
+    Ver todo el catálogo
+  </a>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
