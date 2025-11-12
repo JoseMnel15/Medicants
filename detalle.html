@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Detalle del Producto | Medicants</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1380",
+                        "accent-dark": "#ff7abf",
+                        "background-light": "#fcf8fa",
+                        "background-dark": "#221019",
+                        "text-light": "#1b0d14",
+                        "text-dark": "#fcf8fa",
+                        "subtle-light": "#f3e7ed",
+                        "subtle-dark": "#3a2531",
+                        "subtle-text-light": "#9a4c73",
+                        "subtle-text-dark": "#c198ae",
+                        "text-primary-light": "#bf1f6b",
+                        "text-primary-dark": "#ff9bcf",
+                        "text-secondary-light": "#5b3146",
+                        "text-secondary-dark": "#f3d9e4"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+    <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <header class="flex items-center justify-between p-4 border-b border-subtle-light dark:border-subtle-dark">
+            <button class="p-2" type="button" aria-label="Abrir menú de navegación">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div class="text-center">
+                <a href="index.html">
+                    <h1 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Medicants</h1>
+                </a>
+                <p class="text-xs text-subtle-text-light dark:text-subtle-text-dark">Tu Esencia Perfecta</p>
+            </div>
+            <button class="p-2" type="button" aria-label="Abrir buscador">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+        </header>
+        <main class="flex flex-col flex-grow" data-product-detail>
+            <div class="flex flex-col gap-6 p-6 text-center">
+                <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Cargando detalles...</p>
+            </div>
+        </main>
+    </div>
+    <script src="js/catalog.js" defer></script>
+    <script src="js/product-detail.js" defer></script>
+</body>
+
+</html>
