@@ -3,6 +3,7 @@
 }
 
 body {
+    position: relative;
     min-height: max(884px, 100dvh);
 }
 
@@ -20,4 +21,27 @@ details summary::-webkit-details-marker {
 
 details[open] summary span {
     transform: rotate(180deg);
+}
+
+@media (min-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+
+    body::before {
+        content: "Este sitio está optimizado para visualizarse en dispositivos móviles. Por favor abre Medicants desde tu teléfono.";
+        position: fixed;
+        inset: 0;
+        background: #221019;
+        color: #fcf8fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 1.5;
+        z-index: 9999;
+    }
 }

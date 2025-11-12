@@ -264,7 +264,7 @@ const products = [
       ],
     },
   },
-  {
+  { 
     id: "nitro-red",
     name: "Dumont Nitro Red",
     brand: "Dumont",
@@ -377,6 +377,35 @@ const products = [
       facts: [
         { label: "Concentración", value: "Eau de Parfum" },
         { label: "Familia Olfativa", value: "Aromática – Amaderada / Ámbar Fresco" },
+      ],
+    },
+  },
+    {
+    id: "rasasi-hawas-for-him",
+    name: "Hawas for Him",
+    brand: "Rasasi",
+    size: "10 ml",
+    category: "Hombres",
+    image: "img/HHAW__88739_preview_rev_1.png",
+    alt: "Frasco transparente de Rasasi Hawas Ice rodeado de hielo.",
+    url: "detalle.html?id=rasasi-hawas-for-him",
+    detail: {
+      presentation: "Eau de Parfum",
+      bottleSize: "100 ml",
+      description: `Hawas for Him de Rasasi es una fragancia de la familia olfativa Aromática Acuática para Hombres. Hawas for Him se lanzó en 2015. Las Notas de Salida son manzana, bergamota, limón (lima ácida) y canela; las Notas de Corazón son notas acuosas, ciruela, flor de azahar del naranjo y cardamomo; las Notas de Fondo son ámbar gris, almizcle, pachulí y trozos de madera a la deriva.`,
+      priceOptions: [
+        { size: "3 ml", price: "$65" },
+        { size: "5 ml", price: "$90" },
+        { size: "10 ml", price: "$165" },
+      ],
+      notes: {
+        top: "Manzana, Bergamota, Limón, Canela",
+        heart: "Notas Acuosas, Ciruela, Flor de Azahar, Cardamomo",
+        base: "Ámbar Gris, Almizcle, Pachuli, Madera a la Deriva",
+      },
+      facts: [
+        { label: "Concentración", value: "Eau de Parfum" },
+        { label: "Familia Olfativa", value: "Aromática Acuática" },
       ],
     },
   },
