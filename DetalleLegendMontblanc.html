@@ -10,6 +10,7 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -17,6 +18,7 @@
                 extend: {
                     colors: {
                         "primary": "#ec1380",
+                        "accent-dark": "#ff7abf",
                         "background-light": "#fcf8fa",
                         "background-dark": "#221019",
                         "text-light": "#1b0d14",
@@ -24,7 +26,11 @@
                         "subtle-light": "#f3e7ed",
                         "subtle-dark": "#3a2531",
                         "subtle-text-light": "#9a4c73",
-                        "subtle-text-dark": "#c198ae"
+                        "subtle-text-dark": "#c198ae",
+                        "text-primary-light": "#bf1f6b",
+                        "text-primary-dark": "#ff9bcf",
+                        "text-secondary-light": "#5b3146",
+                        "text-secondary-dark": "#f3d9e4"
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"]
@@ -39,52 +45,37 @@
             },
         }
     </script>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
-        }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
-        }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
-        }
-    </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display">
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden text-text-primary-light dark:text-text-primary-dark">
         <header class="flex items-center justify-between p-4 border-b border-subtle-light dark:border-subtle-dark">
-            <button class="p-2">
-<span class="material-symbols-outlined">menu</span>
-</button>
+            <button class="p-2" type="button" aria-label="Abrir menú de navegación">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
             <div class="text-center">
                 <a href="index.html">
                     <h1 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Medicants</h1>
                 </a>
                 <p class="text-xs text-subtle-text-light dark:text-subtle-text-dark">Tu Esencia Perfecta</p>
             </div>
-            <button class="p-2">
-<span class="material-symbols-outlined">search</span>
-</button>
+            <button class="p-2" type="button" aria-label="Abrir buscador">
+                <span class="material-symbols-outlined">search</span>
+            </button>
         </header>
         <main class="flex flex-col gap-6 p-4">
             <section class="text-center">
                 <h1 class="font-serif-display tracking-tight text-3xl font-bold leading-tight">Legend Montblanc</h1>
                 <div class="flex items-center justify-center gap-2 mt-1">
                     <p class="text-base font-normal text-text-secondary-light dark:text-text-secondary-dark">por Montblanc</p>
-                    <a class="text-sm font-semibold text-primary dark:text-accent-dark underline" href="#">(ver todo)</a>
+                    <a class="text-sm font-semibold text-primary dark:text-accent-dark underline" href="catalago.html">(ver todo)</a>
                 </div>
             </section>
             <section class="relative">
                 <div class="flex justify-center items-center">
-                    <img alt="Perfume bottle and its packaging" class="max-w-full h-auto" src="img/Mont-Blanc-Legend-100ml-EDP-e1729725738752_preview_rev_1.png" />
+                    <img alt="Frasco negro de Legend Montblanc junto a su estuche plateado." class="max-w-full h-auto" src="img/Mont-Blanc-Legend-100ml-EDP-e1729725738752_preview_rev_1.png" />
                 </div>
-                <button class="absolute bottom-2 right-2 flex items-center justify-center w-10 h-10 bg-white/80 dark:bg-black/50 rounded-full shadow-md backdrop-blur-sm">
+                <button class="absolute bottom-2 right-2 flex items-center justify-center w-10 h-10 bg-white/80 dark:bg-black/50 rounded-full shadow-md backdrop-blur-sm" type="button" aria-label="Ampliar imagen del producto">
 <span class="material-symbols-outlined text-text-primary-light dark:text-text-primary-dark">search</span>
 </button>
             </section>
@@ -155,15 +146,6 @@
             </div>
         </main>
     </div>
-    <style>
-        details summary::-webkit-details-marker {
-            display: none;
-        }
-        
-        details[open] summary span {
-            transform: rotate(180deg);
-        }
-    </style>
 </body>
 
 </html>
