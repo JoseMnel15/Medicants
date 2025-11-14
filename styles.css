@@ -15,10 +15,33 @@ body {
     font-variation-settings: 'FILL' 1;
 }
 
-.floating-whatsapp {
+.floating-whatsapp-wrapper {
     position: fixed;
     bottom: 1.25rem;
     right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    z-index: 8000;
+}
+
+.floating-whatsapp-bubble {
+    background: rgba(34, 16, 25, 0.92);
+    color: #fcf8fa;
+    padding: 0.65rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: whatsappBubbleCycle 35s ease-in-out infinite;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.floating-whatsapp {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 9999px;
@@ -28,7 +51,6 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    z-index: 8000;
     transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
@@ -43,7 +65,41 @@ body {
     height: 1.8rem;
 }
 
+@keyframes whatsappBubbleCycle {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+        visibility: hidden;
+    }
+    70% {
+        opacity: 0;
+        transform: translateY(10px);
+        visibility: hidden;
+    }
+    74% {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+    86% {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+    90%,
+    100% {
+        opacity: 0;
+        transform: translateY(10px);
+        visibility: hidden;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
+    .floating-whatsapp-bubble {
+        animation: none;
+        opacity: 0;
+    }
+
     .floating-whatsapp,
     .floating-whatsapp:hover,
     .floating-whatsapp:focus-visible {
@@ -82,7 +138,7 @@ details[open] summary span {
         z-index: 9999;
     }
 
-    .floating-whatsapp {
+    .floating-whatsapp-wrapper {
         display: none;
     }
 }
