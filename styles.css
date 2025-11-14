@@ -24,6 +24,7 @@ body {
     align-items: flex-end;
     gap: 0.5rem;
     z-index: 8000;
+    pointer-events: none;
 }
 
 .floating-whatsapp-bubble {
@@ -36,7 +37,7 @@ body {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
     opacity: 0;
     transform: translateY(10px);
-    animation: whatsappBubbleCycle 35s ease-in-out infinite;
+    animation: whatsappBubbleCycle 20s ease-in-out infinite;
     pointer-events: none;
     white-space: nowrap;
 }
@@ -52,6 +53,7 @@ body {
     justify-content: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transition: transform 150ms ease, box-shadow 150ms ease;
+    pointer-events: auto;
 }
 
 .floating-whatsapp:hover,

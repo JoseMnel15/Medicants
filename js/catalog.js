@@ -445,6 +445,44 @@ const variantRenderers = {
   },
 };
 
+const syncWhatsAppBubbleAnimation = () => {
+  const bubble = document.querySelector(".floating-whatsapp-bubble");
+  if (!bubble) {
+    return;
+  }
+
+  const storageKey = "medicants-whatsapp-cycle-start";
+  const cycleDurationMs = 20_000;
+
+  const getStartTimestamp = () => {
+    const now = Date.now();
+    try {
+      const stored = Number(window.localStorage?.getItem(storageKey));
+      if (Number.isFinite(stored)) {
+        return stored;
+      }
+      window.localStorage?.setItem(storageKey, String(now));
+      return now;
+    } catch {
+      return now;
+    }
+  };
+
+  const applyDelay = () => {
+    const start = getStartTimestamp();
+    const now = Date.now();
+    const elapsed = (now - start) % cycleDurationMs;
+    bubble.style.animationDelay = `${-elapsed}ms`;
+  };
+
+  applyDelay();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      applyDelay();
+    }
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-product-list]").forEach((container) => {
     const variant = container.dataset.cardVariant || "catalog";
@@ -472,4 +510,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     container.innerHTML = list.map((product) => renderer(product)).join("");
   });
+
+  syncWhatsAppBubbleAnimation();
 });
