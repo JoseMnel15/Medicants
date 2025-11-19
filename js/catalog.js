@@ -387,16 +387,16 @@ const products = [
     size: "10 ml",
     category: "Hombres",
     image: "img/HHAW__88739_preview_rev_1.png",
-    alt: "Frasco transparente de Rasasi Hawas Ice rodeado de hielo.",
+    alt: "Frasco transparente de Rasasi Hawas for Him rodeado de hielo.",
     url: "detalle.html?id=rasasi-hawas-for-him",
     detail: {
       presentation: "Eau de Parfum",
       bottleSize: "100 ml",
       description: `Hawas for Him de Rasasi es una fragancia de la familia olfativa Aromática Acuática para Hombres. Hawas for Him se lanzó en 2015. Las Notas de Salida son manzana, bergamota, limón (lima ácida) y canela; las Notas de Corazón son notas acuosas, ciruela, flor de azahar del naranjo y cardamomo; las Notas de Fondo son ámbar gris, almizcle, pachulí y trozos de madera a la deriva.`,
       priceOptions: [
-        { size: "3 ml", price: "$65" },
-        { size: "5 ml", price: "$90" },
-        { size: "10 ml", price: "$165" },
+        { size: "3 ml", price: "$50" },
+        { size: "5 ml", price: "$65" },
+        { size: "10 ml", price: "$110" },
       ],
       notes: {
         top: "Manzana, Bergamota, Limón, Canela",
@@ -512,4 +512,84 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   syncWhatsAppBubbleAnimation();
+  setupSearch();
 });
+
+const setupSearch = () => {
+  const toggleButtons = document.querySelectorAll("[data-search-toggle]");
+  const overlay = document.querySelector("[data-search-overlay]");
+  const panel = document.querySelector("[data-search-panel]");
+  const input = document.querySelector("[data-search-input]");
+  const closeBtn = document.querySelector("[data-search-close]");
+  const resultsContainer = document.querySelector("[data-search-results]");
+
+  if (!toggleButtons.length || !overlay || !panel || !input || !resultsContainer) {
+    return;
+  }
+
+  const open = () => {
+    panel.classList.remove("hidden");
+    overlay?.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+    input.focus();
+    renderResults("");
+  };
+
+  const close = () => {
+    panel.classList.add("hidden");
+    overlay?.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+    input.value = "";
+    renderResults("");
+  };
+
+  const renderResults = (query) => {
+    const normalized = query.trim().toLowerCase();
+    let list = globalThis.products || [];
+
+    if (normalized) {
+      list = list.filter(
+        (p) =>
+          p.name.toLowerCase().includes(normalized) ||
+          p.brand.toLowerCase().includes(normalized),
+      );
+    }
+
+    if (!list.length) {
+      resultsContainer.innerHTML = `
+        <div class="text-center text-sm text-subtle-text-light dark:text-subtle-text-dark py-4">
+          No encontramos coincidencias.
+        </div>
+      `;
+      return;
+    }
+
+    resultsContainer.innerHTML = list
+      .map(
+        (product) => `
+          <a href="${product.url}" class="flex items-center gap-3 py-2 border-b border-subtle-light dark:border-subtle-dark no-underline">
+            <div class="w-12 h-12 rounded-md bg-subtle-light dark:bg-subtle-dark overflow-hidden flex items-center justify-center">
+              <img src="${product.image}" alt="${product.alt}" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-text-light dark:text-text-dark">${product.name}</span>
+              <span class="text-xs text-subtle-text-light dark:text-subtle-text-dark">${product.brand}</span>
+            </div>
+          </a>
+        `,
+      )
+      .join("");
+  };
+
+  toggleButtons.forEach((btn) => btn.addEventListener("click", open));
+  overlay?.addEventListener("click", close);
+  closeBtn?.addEventListener("click", close);
+  input.addEventListener("input", (e) => {
+    renderResults(e.target.value);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      close();
+    }
+  });
+};

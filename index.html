@@ -57,10 +57,21 @@
                 <h1 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Medicants</h1>
                 <p class="text-xs text-subtle-text-light dark:text-subtle-text-dark">Tu Esencia Perfecta</p>
             </div>
-            <button class="p-2" type="button" aria-label="Abrir buscador">
+            <button class="p-2" type="button" aria-label="Abrir buscador" data-search-toggle>
                 <span class="material-symbols-outlined">search</span>
             </button>
         </header>
+        <div class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40" data-search-overlay></div>
+        <div class="hidden fixed inset-x-0 top-0 z-50 bg-background-light dark:bg-background-dark border-b border-subtle-light dark:border-subtle-dark shadow-md" data-search-panel>
+            <div class="p-4 flex items-center gap-3">
+                <span class="material-symbols-outlined text-text-light dark:text-text-dark">search</span>
+                <input type="text" placeholder="Busca por nombre o marca" class="flex-1 rounded-lg border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2 text-text-light dark:text-text-dark placeholder:text-subtle-text-light dark:placeholder:text-subtle-text-dark focus:outline-none" data-search-input />
+                <button type="button" class="p-2 text-text-light dark:text-text-dark" data-search-close aria-label="Cerrar buscador">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="max-h-[65vh] overflow-y-auto px-4 pb-4" data-search-results></div>
+        </div>
         <div class="@container">
             <div class="px-4 py-4">
                 <div class="flex min-h-[200px] flex-col gap-4 bg-cover bg-center bg-no-repeat items-center justify-center p-4 rounded-lg" role="img" aria-label="Frascos de perfume iluminados suavemente sobre un fondo oscuro." style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("img/portada.png");'>
