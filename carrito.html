@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Catálogo de Perfumes</title>
+    <title>Carrito | Medicants</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -51,19 +51,19 @@
     <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <header class="grid grid-cols-3 items-center p-4 border-b border-subtle-light dark:border-subtle-dark">
             <div class="flex items-center gap-2">
-                <button class="p-2" type="button" aria-label="Abrir menú de navegación">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
+                <a class="p-2 inline-flex" href="index.html" aria-label="Volver al inicio">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </a>
             </div>
             <div class="text-center">
-                <h1 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Medicants</h1>
-                <p class="text-xs text-subtle-text-light dark:text-subtle-text-dark">Tu Esencia Perfecta</p>
+                <h1 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Carrito</h1>
+                <p class="text-xs text-subtle-text-light dark:text-subtle-text-dark">Revisa tu pedido</p>
             </div>
             <div class="flex items-center justify-end gap-2">
                 <button class="p-2" type="button" aria-label="Abrir buscador" data-search-toggle>
                     <span class="material-symbols-outlined">search</span>
                 </button>
-                <a class="relative inline-flex p-2" aria-label="Abrir carrito" href="carrito.html">
+                <a class="relative inline-flex p-2" aria-label="Ver carrito" href="carrito.html">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <span class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full bg-primary text-white text-[11px] leading-[18px] text-center font-bold hidden" data-cart-count>0</span>
                 </a>
@@ -80,31 +80,10 @@
             </div>
             <div class="max-h-[65vh] overflow-y-auto px-4 pb-4" data-search-results></div>
         </div>
-        <div class="@container">
-            <div class="px-4 py-4">
-                <div class="flex min-h-[200px] flex-col gap-4 bg-cover bg-center bg-no-repeat items-center justify-center p-4 rounded-lg" role="img" aria-label="Frascos de perfume iluminados suavemente sobre un fondo oscuro." style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("img/portada.png");'>
-                    <div class="flex flex-col gap-2 text-center">
-                        <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em]">
-                            CATÁLOGO 2025
-                        </h2>
-                        <p class="text-white text-sm font-normal leading-normal">
-                            Hasta 10% de descuento
-                        </p>
-                    </div>
-                </div>
+        <main class="flex flex-col flex-grow" data-cart-page>
+            <div class="flex flex-col gap-6 p-6 text-center">
+                <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Cargando carrito...</p>
             </div>
-        </div>
-        <main class="flex flex-col gap-6 w-full">
-            <section class="flex flex-col w-full px-4">
-                <h2 class="text-text-light dark:text-text-dark text-xl font-bold text-center tracking-[-0.015em] pb-4 pt-2">Productos Populares</h2>
-                <div class="grid grid-cols-2 gap-4" data-product-list data-product-filter="featured" data-card-variant="featured" data-limit="4"></div>
-            </section>
-            <div class="px-4 pt-2 pb-8">
-                <a href="catalago.html" class="w-full h-12 flex items-center justify-center rounded-lg bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark font-bold">
-    Ver todo el catálogo
-  </a>
-            </div>
-
         </main>
         <div class="floating-whatsapp-wrapper">
             <span class="floating-whatsapp-bubble" aria-hidden="true">Envíanos un mensaje para hacer tu pedido</span>
