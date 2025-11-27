@@ -27,6 +27,24 @@ const slugify = (text) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)+/g, "");
 
+const stripMl = (value) => {
+  const match = String(value || "").match(/[\d.]+/);
+  return match ? match[0] : "";
+};
+
+const formatMl = (value) => {
+  const num = stripMl(value);
+  return num ? `${num} ml` : "";
+};
+
+const stripCurrency = (value) => String(value || "").replace(/[^0-9.,-]/g, "").replace(/,/g, "");
+
+const formatPrice = (value) => {
+  const num = stripCurrency(value);
+  if (!num) return "";
+  return num.startsWith("$") ? num : `$${num}`;
+};
+
 const loadConfig = () => {
   try {
     const savedUrl = window.localStorage.getItem(storageKeys.baseUrl);
@@ -157,8 +175,8 @@ const addPriceRow = (size = "", price = "") => {
   const row = document.createElement("div");
   row.className = "grid grid-cols-2 gap-2 price-row";
   row.innerHTML = `
-    <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Tamaño (ej. 3 ml)" data-price-size value="${size || ""}" />
-    <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Precio (ej. $150)" data-price-value value="${price || ""}" />
+    <input type="number" min="1" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Tamaño (ej. 3)" data-price-size value="${stripMl(size)}" />
+    <input type="number" min="0" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Precio (ej. 150)" data-price-value value="${stripCurrency(price)}" />
   `;
   els.priceOptions?.appendChild(row);
 };
@@ -175,14 +193,14 @@ const fillForm = (product) => {
   field("name").value = product.name || "";
   field("brand").value = product.brand || "";
   field("category").value = product.category || "";
-  field("size").value = product.size || "";
+  field("size").value = stripMl(product.size);
   field("image").value = product.image || "";
   field("alt").value = product.alt || "";
   field("featured").checked = Boolean(product.featured);
 
   const detail = product.detail || {};
   field("presentation").value = detail.presentation || "";
-  field("bottleSize").value = detail.bottleSize || "";
+  field("bottleSize").value = stripMl(detail.bottleSize);
   field("description").value = detail.description || "";
   field("notesTop").value = detail.notes?.top || "";
   field("notesHeart").value = detail.notes?.heart || "";
@@ -207,7 +225,7 @@ const resetForm = () => {
 const getFormData = () => {
   const detail = {};
   if (field("presentation").value) detail.presentation = field("presentation").value;
-  if (field("bottleSize").value) detail.bottleSize = field("bottleSize").value;
+  if (field("bottleSize").value) detail.bottleSize = formatMl(field("bottleSize").value);
   if (field("description").value) detail.description = field("description").value;
 
   const priceOptions = [...els.priceOptions.querySelectorAll(".price-row")]
@@ -215,7 +233,7 @@ const getFormData = () => {
       const size = row.querySelector("[data-price-size]")?.value.trim();
       const price = row.querySelector("[data-price-value]")?.value.trim();
       if (!size || !price) return null;
-      return { size, price };
+      return { size: formatMl(size), price: formatPrice(price) };
     })
     .filter(Boolean);
   if (priceOptions.length) {
@@ -238,7 +256,7 @@ const getFormData = () => {
     name: field("name").value.trim(),
     brand: field("brand").value.trim(),
     category: field("category").value.trim(),
-    size: field("size").value.trim(),
+    size: formatMl(field("size").value),
     image: field("image").value.trim(),
     alt: field("alt").value.trim(),
     featured: field("featured").checked,

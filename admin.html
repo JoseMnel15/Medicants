@@ -106,11 +106,16 @@
                         <div class="grid grid-cols-2 gap-3">
                             <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                                 Categoría
-                                <input type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="category" placeholder="Hombres, Mujeres, Unisex..." />
+                                <select class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="category">
+                                    <option value="">Selecciona</option>
+                                    <option value="Hombres">Hombres</option>
+                                    <option value="Mujeres">Mujeres</option>
+                                    <option value="Unisex">Unisex</option>
+                                </select>
                             </label>
                             <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                                 Tamaño corto (lista)
-                                <input type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="size" placeholder="10 ml" />
+                                <input type="number" min="1" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="size" placeholder="10" />
                             </label>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
@@ -134,11 +139,27 @@
                     <div class="grid grid-cols-1 gap-3">
                         <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                             Presentación (detalle)
-                            <input type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="presentation" placeholder="Eau de Parfum" />
+                            <select class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="presentation">
+                                <option value="">Selecciona</option>
+                                <option value="Eau de Parfum">Eau de Parfum</option>
+                                <option value="Eau de Toilette">Eau de Toilette</option>
+                                <option value="Eau de Cologne">Eau de Cologne</option>
+                                <option value="Parfum">Parfum</option>
+                                <option value="Elixir">Elixir</option>
+                                <option value="Intense">Intense</option>
+                            </select>
                         </label>
                         <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                             Tamaño de frasco original
-                            <input type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="bottleSize" placeholder="100 ml" />
+                            <select class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="bottleSize">
+                                <option value="">Selecciona</option>
+                                <option value="50">50 ml</option>
+                                <option value="75">75 ml</option>
+                                <option value="100">100 ml</option>
+                                <option value="125">125 ml</option>
+                                <option value="150">150 ml</option>
+                                <option value="200">200 ml</option>
+                            </select>
                         </label>
                         <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                             Descripción
@@ -150,8 +171,8 @@
                         <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Opciones de precio</h3>
                         <div class="grid grid-cols-1 gap-2" id="price-options">
                             <div class="grid grid-cols-2 gap-2 price-row">
-                                <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Tamaño (ej. 3 ml)" data-price-size />
-                                <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Precio (ej. $150)" data-price-value />
+                                <input type="number" min="1" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Tamaño (ej. 3)" data-price-size />
+                                <input type="number" min="0" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Precio (ej. 150)" data-price-value />
                             </div>
                         </div>
                         <button type="button" class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold" id="add-price-option">Agregar opción</button>
