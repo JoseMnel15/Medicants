@@ -1,5 +1,6 @@
 :root {
     color-scheme: light dark;
+    --header-height: 82px;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
 }
 
 .floating-whatsapp-bubble {
+    display: none;
     background: rgba(34, 16, 25, 0.92);
     color: #fcf8fa;
     padding: 0.65rem 1rem;
@@ -35,9 +37,9 @@ body {
     font-size: 0.85rem;
     font-weight: 600;
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
-    opacity: 0;
-    transform: translateY(10px);
-    animation: whatsappBubbleCycle 20s ease-in-out infinite;
+    opacity: 1;
+    transform: none;
+    animation: none;
     pointer-events: none;
     white-space: nowrap;
 }
@@ -116,6 +118,18 @@ details summary::-webkit-details-marker {
 
 details[open] summary span {
     transform: rotate(180deg);
+}
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+
+.has-fixed-header {
+    padding-top: var(--header-height);
 }
 
 @media (min-width: 768px) {
