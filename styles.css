@@ -133,11 +133,11 @@ details[open] summary span {
 }
 
 @media (min-width: 768px) {
-    body {
+    body:not(.allow-desktop) {
         overflow: hidden;
     }
 
-    body::before {
+    body:not(.allow-desktop)::before {
         content: "Este sitio está optimizado para visualizarse en dispositivos móviles. Por favor abre Medicants desde tu teléfono.";
         position: fixed;
         inset: 0;
@@ -154,7 +154,7 @@ details[open] summary span {
         z-index: 9999;
     }
 
-    .floating-whatsapp-wrapper {
+    body:not(.allow-desktop) .floating-whatsapp-wrapper {
         display: none;
     }
 }
