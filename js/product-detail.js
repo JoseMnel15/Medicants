@@ -297,14 +297,43 @@ const renderProductDetail = (product) => {
   setupCartActions(product);
 };
 
-const initializeProductDetail = () => {
+const resolveProducts = async () => {
+  if (globalThis.productsReady) {
+    try {
+      const data = await globalThis.productsReady;
+      if (Array.isArray(data) && data.length) {
+        return data;
+      }
+    } catch (err) {
+      console.warn("No se pudo cargar productsReady", err);
+    }
+  }
+
+  if (typeof globalThis.fetchProducts === "function") {
+    try {
+      const data = await globalThis.fetchProducts();
+      if (Array.isArray(data)) {
+        return data;
+      }
+    } catch (err) {
+      console.warn("No se pudo cargar fetchProducts", err);
+    }
+  }
+
+  if (Array.isArray(globalThis.products)) {
+    return globalThis.products;
+  }
+  return [];
+};
+
+const initializeProductDetail = async () => {
   if (!detailContainer) {
     return;
   }
 
   const params = new URLSearchParams(window.location.search);
   const productId = params.get("id");
-  const list = Array.isArray(globalThis.products) ? globalThis.products : [];
+  const list = await resolveProducts();
   const product = list.find((item) => item.id === productId && item.detail);
 
   if (!product) {
@@ -316,4 +345,6 @@ const initializeProductDetail = () => {
   renderProductDetail(product);
 };
 
-document.addEventListener("DOMContentLoaded", initializeProductDetail);
+document.addEventListener("DOMContentLoaded", () => {
+  initializeProductDetail();
+});

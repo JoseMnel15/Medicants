@@ -1,4 +1,6 @@
-const products = [
+const API_BASE_URL = "https://medicinas-backend.onrender.com";
+
+const staticProducts = [
   {
     id: "valentino-uomo-born-in-roma-intense",
     name: "Valentino Uomo Born In Roma Intense",
@@ -411,12 +413,65 @@ const products = [
   },
 ];
 
-globalThis.products = products;
+let productsReady = null;
+let cachedProducts = null;
+
+const normalizeProduct = (product) => ({
+  ...product,
+  url: product.url || `detalle.html?id=${product.id}`,
+});
+
+const mergeWithStatic = (apiList = []) => {
+  const byId = new Map(apiList.map((p) => [p.id, p]));
+  staticProducts
+    .map(normalizeProduct)
+    .forEach((p) => {
+      if (!byId.has(p.id)) {
+        byId.set(p.id, p);
+      }
+    });
+  return Array.from(byId.values());
+};
+
+const loadProductsFromApi = async () => {
+  const response = await fetch(`${API_BASE_URL}/products`);
+  if (!response.ok) {
+    throw new Error("No se pudo cargar desde API");
+  }
+  const data = await response.json();
+  if (!Array.isArray(data) || !data.length) {
+    throw new Error("Respuesta de API vacía");
+  }
+  const normalized = data.map(normalizeProduct);
+  const merged = mergeWithStatic(normalized);
+  cachedProducts = merged;
+  globalThis.products = merged;
+  return merged;
+};
+
+const ensureProducts = async () => {
+  if (cachedProducts && cachedProducts.length) {
+    return cachedProducts;
+  }
+  try {
+    const data = await loadProductsFromApi();
+    return data;
+  } catch (err) {
+    console.warn("Usando fallback estático de productos:", err.message);
+    const fallback =
+      (Array.isArray(globalThis.products) && globalThis.products.length && globalThis.products) ||
+      staticProducts.map(normalizeProduct);
+    cachedProducts = fallback;
+    globalThis.products = fallback;
+    return fallback;
+  }
+};
 
 const variantRenderers = {
   featured: (product) => {
+    const href = product.url || `detalle.html?id=${product.id}`;
     return `
-      <a href="${product.url}" class="block no-underline">
+      <a href="${href}" class="block no-underline">
         <div class="flex flex-col text-center">
           <div class="w-full bg-subtle-light/60 dark:bg-subtle-dark/60 rounded-lg flex items-center justify-center p-2 mb-3">
             <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover bg-transparent rounded-md" role="img" aria-label="${product.alt}" style="background-image: url('${product.image}');"></div>
@@ -430,8 +485,9 @@ const variantRenderers = {
     `;
   },
   catalog: (product) => {
+    const href = product.url || `detalle.html?id=${product.id}`;
     return `
-      <a href="${product.url}" class="block no-underline">
+      <a href="${href}" class="block no-underline">
         <div class="flex flex-col">
           <div class="w-full bg-subtle-light dark:bg-subtle-dark rounded-lg aspect-square mb-2 overflow-hidden">
             <img src="${product.image}" alt="${product.alt}" class="w-full h-full object-contain rounded-lg" />
@@ -483,7 +539,9 @@ const syncWhatsAppBubbleAnimation = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+const renderProductLists = async () => {
+  const listData = await ensureProducts();
+
   document.querySelectorAll("[data-product-list]").forEach((container) => {
     const variant = container.dataset.cardVariant || "catalog";
     const renderer = variantRenderers[variant];
@@ -492,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    let list = [...products];
+    let list = [...listData];
 
     if (container.dataset.productFilter === "featured") {
       list = list.filter((product) => product.featured);
@@ -510,7 +568,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     container.innerHTML = list.map((product) => renderer(product)).join("");
   });
+};
 
+document.addEventListener("DOMContentLoaded", async () => {
+  productsReady = ensureProducts();
+  globalThis.productsReady = productsReady;
+  globalThis.fetchProducts = ensureProducts;
+  await renderProductLists();
   syncWhatsAppBubbleAnimation();
   setupSearch();
 });

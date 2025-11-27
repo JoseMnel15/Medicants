@@ -9,6 +9,7 @@ const state = {
   selectedId: null,
   baseUrl: defaultBaseUrl,
   apiKey: "",
+  connectionOk: false,
 };
 
 const els = {};
@@ -61,10 +62,15 @@ const setStatus = (message, type = "info") => {
   els.status.textContent = message;
 };
 
-const setConnectionStatus = (message) => {
-  if (els.connectionStatus) {
-    els.connectionStatus.textContent = message;
-  }
+const setConnectionStatus = (message, type = "info") => {
+  if (!els.connectionStatus) return;
+  const colors = {
+    info: "text-subtle-text-light dark:text-subtle-text-dark",
+    success: "text-green-600",
+    error: "text-red-600",
+  };
+  els.connectionStatus.className = `text-xs ${colors[type] || colors.info}`;
+  els.connectionStatus.textContent = message;
 };
 
 const withAuthHeaders = (extra = {}) => ({
@@ -81,6 +87,34 @@ const fetchJson = async (url, options = {}) => {
     throw new Error(error);
   }
   return data;
+};
+
+const validateConnection = async () => {
+  try {
+    // PUT a un id inexistente para verificar el token sin crear nada (debe responder 404 si el token es válido)
+    const res = await fetch(`${state.baseUrl}/products/__ping__`, {
+      method: "PUT",
+      headers: withAuthHeaders(),
+      body: JSON.stringify({ name: "ping", brand: "ping" }),
+    });
+    if (res.status === 401) {
+      state.connectionOk = false;
+      setConnectionStatus("API Key inválida", "error");
+      return false;
+    }
+    if (res.ok || res.status === 404) {
+      state.connectionOk = true;
+      setConnectionStatus(`Conectado a ${state.baseUrl}`, "success");
+      return true;
+    }
+    state.connectionOk = false;
+    setConnectionStatus("No se pudo validar", "error");
+    return false;
+  } catch (err) {
+    state.connectionOk = false;
+    setConnectionStatus(`Error de conexión: ${err.message}`, "error");
+    return false;
+  }
 };
 
 const renderProducts = () => {
@@ -213,16 +247,22 @@ const getFormData = () => {
 };
 
 const loadProducts = async () => {
-  setConnectionStatus("Cargando...");
+  setConnectionStatus("Validando conexión...", "info");
+  const ok = await validateConnection();
+  if (!ok) {
+    setStatus("Revisa la URL o API Key", "error");
+    return;
+  }
+  setConnectionStatus("Cargando productos...", "info");
   try {
     const data = await fetchJson(`${state.baseUrl}/products`);
     state.products = Array.isArray(data) ? data : [];
     renderProducts();
-    setConnectionStatus(`Conectado a ${state.baseUrl}`);
+    setConnectionStatus(`Conectado a ${state.baseUrl}`, "success");
     setStatus("Productos cargados", "success");
   } catch (err) {
     setStatus(`No se pudieron cargar productos: ${err.message}`, "error");
-    setConnectionStatus("Error al cargar");
+    setConnectionStatus("Error al cargar", "error");
   }
 };
 
@@ -307,7 +347,7 @@ const bindEvents = () => {
   const saveConn = $("#save-connection");
   saveConn?.addEventListener("click", () => {
     saveConfig();
-    setConnectionStatus("Conexión guardada");
+    setConnectionStatus("Probando conexión...", "info");
     loadProducts();
   });
 
