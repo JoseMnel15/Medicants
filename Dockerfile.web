@@ -1,0 +1,17 @@
+FROM nginx:alpine
+
+# Configuración de Nginx para servir el frontend y proxyear /api al backend
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copiamos solo los archivos del frontend
+COPY admin.html /usr/share/nginx/html/admin.html
+COPY index.html /usr/share/nginx/html/index.html
+COPY catalago.html /usr/share/nginx/html/catalago.html
+COPY detalle.html /usr/share/nginx/html/detalle.html
+COPY carrito.html /usr/share/nginx/html/carrito.html
+COPY styles.css /usr/share/nginx/html/styles.css
+COPY js /usr/share/nginx/html/js
+COPY img /usr/share/nginx/html/img
+
+# Nginx escucha en 80
+EXPOSE 80

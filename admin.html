@@ -187,6 +187,17 @@
                         </div>
                     </div>
 
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Más información (facts)</h3>
+                        <div class="grid grid-cols-1 gap-2" id="facts-list">
+                            <div class="grid grid-cols-2 gap-2 fact-row">
+                                <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Etiqueta (ej. Concentración)" data-fact-label />
+                                <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Valor (ej. Eau de Parfum)" data-fact-value />
+                            </div>
+                        </div>
+                        <button type="button" class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold" id="add-fact">Agregar dato</button>
+                    </div>
+
                     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div class="flex items-center gap-2">
                             <button type="submit" class="h-12 px-4 rounded-lg bg-primary text-white font-bold" id="save-product">Guardar</button>

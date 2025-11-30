@@ -1,4 +1,4 @@
-const defaultBaseUrl = "https://medicinas-backend.onrender.com";
+const defaultBaseUrl = "/api";
 const storageKeys = {
   baseUrl: "medicants-admin-base-url",
   apiKey: "medicants-admin-api-key",
@@ -187,6 +187,22 @@ const clearPriceRows = () => {
   addPriceRow();
 };
 
+const addFactRow = (label = "", value = "") => {
+  const row = document.createElement("div");
+  row.className = "grid grid-cols-2 gap-2 fact-row";
+  row.innerHTML = `
+    <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Etiqueta (ej. Concentración)" data-fact-label value="${label || ""}" />
+    <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Valor (ej. Eau de Parfum)" data-fact-value value="${value || ""}" />
+  `;
+  els.factsList?.appendChild(row);
+};
+
+const clearFactRows = () => {
+  if (!els.factsList) return;
+  els.factsList.innerHTML = "";
+  addFactRow();
+};
+
 const fillForm = (product) => {
   state.selectedId = product.id;
   field("id").value = product.id || "";
@@ -212,6 +228,12 @@ const fillForm = (product) => {
     priceOptions.forEach((opt) => addPriceRow(opt.size, opt.price));
   }
 
+  clearFactRows();
+  const facts = Array.isArray(detail.facts) ? detail.facts : [];
+  if (facts.length) {
+    facts.forEach((f) => addFactRow(f.label, f.value));
+  }
+
   setStatus(`Editando ${product.name}`, "info");
 };
 
@@ -219,6 +241,7 @@ const resetForm = () => {
   state.selectedId = null;
   els.form.reset();
   clearPriceRows();
+  clearFactRows();
   setStatus("Formulario listo para crear", "info");
 };
 
@@ -238,6 +261,18 @@ const getFormData = () => {
     .filter(Boolean);
   if (priceOptions.length) {
     detail.priceOptions = priceOptions;
+  }
+
+  const facts = [...els.factsList.querySelectorAll(".fact-row")]
+    .map((row) => {
+      const label = row.querySelector("[data-fact-label]")?.value.trim();
+      const value = row.querySelector("[data-fact-value]")?.value.trim();
+      if (!label || !value) return null;
+      return { label, value };
+    })
+    .filter(Boolean);
+  if (facts.length) {
+    detail.facts = facts;
   }
 
   const notes = {
@@ -348,6 +383,8 @@ const bindEvents = () => {
   els.priceOptions = $("#price-options");
   els.addPriceBtn = $("#add-price-option");
   els.status = $("#form-status");
+  els.factsList = $("#facts-list");
+  els.addFactBtn = $("#add-fact");
 
   if (els.urlInput) {
     els.urlInput.value = state.baseUrl;
@@ -373,6 +410,7 @@ const bindEvents = () => {
   $("#delete-product")?.addEventListener("click", deleteProduct);
   els.form?.addEventListener("submit", saveProduct);
   els.addPriceBtn?.addEventListener("click", () => addPriceRow());
+  els.addFactBtn?.addEventListener("click", () => addFactRow());
 };
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://medicinas-backend.onrender.com";
+const API_BASE_URL = "/api";
 
 const staticProducts = [];
 
