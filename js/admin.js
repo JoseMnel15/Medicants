@@ -97,6 +97,18 @@ const withAuthHeaders = (extra = {}) => ({
   ...extra,
 });
 
+const showToast = (title, icon = "success") => {
+  if (!window.Swal) return;
+  Swal.fire({
+    position: "top-end",
+    icon,
+    title,
+    toast: true,
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};
+
 const fetchJson = async (url, options = {}) => {
   const res = await fetch(url, options);
   const data = await res.json().catch(() => ({}));
@@ -348,8 +360,10 @@ const saveProduct = async (event) => {
     renderProducts();
     fillForm(saved);
     setStatus("Producto guardado", "success");
+    showToast("Producto guardado con éxito", "success");
   } catch (err) {
     setStatus(`Error guardando: ${err.message}`, "error");
+    showToast("Error al guardar", "error");
   }
 };
 
@@ -358,8 +372,21 @@ const deleteProduct = async () => {
     setStatus("Selecciona un producto para eliminar", "error");
     return;
   }
-  const confirmDelete = window.confirm("¿Eliminar este producto?");
-  if (!confirmDelete) return;
+  let confirmed = true;
+  if (window.Swal) {
+    const result = await Swal.fire({
+      title: "¿Eliminar este producto?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+    confirmed = result.isConfirmed;
+  } else {
+    confirmed = window.confirm("¿Eliminar este producto?");
+  }
+  if (!confirmed) return;
   try {
     await fetchJson(`${state.baseUrl}/products/${state.selectedId}`, {
       method: "DELETE",
@@ -369,8 +396,10 @@ const deleteProduct = async () => {
     resetForm();
     renderProducts();
     setStatus("Producto eliminado", "success");
+    showToast("Producto eliminado", "success");
   } catch (err) {
     setStatus(`No se pudo eliminar: ${err.message}`, "error");
+    showToast("Error al eliminar", "error");
   }
 };
 
