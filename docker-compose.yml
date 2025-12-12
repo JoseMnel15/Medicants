@@ -29,10 +29,26 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
-    ports:
-      - "8080:80"
+    # IMPORTANTE: quitar "8080:80" y dejar solo expose
+    expose:
+      - "80"
     depends_on:
       - api
 
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    depends_on:
+      - web
+
 volumes:
   pgdata:
+  npm_data:
+  npm_letsencrypt:
