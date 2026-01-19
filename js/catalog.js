@@ -135,7 +135,7 @@ const renderProductLists = async () => {
     }
 
     if (activeCategory !== "all") {
-      list = list.filter((product) => product.category === activeCategory);
+      list = list.filter((product) => (product.category || "").toLowerCase() === activeCategory.toLowerCase());
     }
 
     if (container.dataset.productIds) {
