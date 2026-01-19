@@ -8,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -42,9 +43,11 @@
     </script>
 </head>
 
-<body class="allow-desktop bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<body
+    class="allow-desktop bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
     <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden has-fixed-header">
-        <header class="sticky-header grid grid-cols-3 items-center p-4 border-b border-subtle-light dark:border-subtle-dark bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
+        <header
+            class="sticky-header grid grid-cols-3 items-center p-4 border-b border-subtle-light dark:border-subtle-dark bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
             <div class="flex items-center gap-2">
                 <a class="p-2 inline-flex" href="index.html" aria-label="Volver al sitio">
                     <span class="material-symbols-outlined">arrow_back</span>
@@ -60,54 +63,73 @@
         </header>
 
         <main class="flex flex-col gap-6 w-full px-4 pb-12 pt-2">
-            <section class="bg-white/80 dark:bg-background-dark/60 rounded-lg border border-subtle-light dark:border-subtle-dark p-4 space-y-3">
+            <section
+                class="bg-white/80 dark:bg-background-dark/60 rounded-lg border border-subtle-light dark:border-subtle-dark p-4 space-y-3">
                 <h2 class="text-lg font-bold text-text-light dark:text-text-dark">Conexión</h2>
                 <div class="grid grid-cols-1 gap-3">
                     <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                         URL del backend
-                        <input type="url" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" id="backend-url" placeholder="https://medicinas-backend.onrender.com" />
+                        <input type="url"
+                            class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                            id="backend-url" placeholder="https://medicinas-backend.onrender.com" />
                     </label>
                     <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                         API Key (x-api-key)
-                        <input type="password" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" id="api-key" placeholder="Ingresa tu token de admin" />
+                        <input type="password"
+                            class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                            id="api-key" placeholder="Ingresa tu token de admin" />
                     </label>
                     <div class="flex items-center gap-2">
-                        <button type="button" class="h-11 px-4 rounded-lg bg-primary text-white font-bold" id="save-connection">Guardar conexión</button>
-                        <span class="text-xs text-subtle-text-light dark:text-subtle-text-dark" id="connection-status">Sin guardar</span>
+                        <button type="button" class="h-11 px-4 rounded-lg bg-primary text-white font-bold"
+                            id="save-connection">Guardar conexión</button>
+                        <span class="text-xs text-subtle-text-light dark:text-subtle-text-dark"
+                            id="connection-status">Sin guardar</span>
                     </div>
                 </div>
             </section>
 
-            <section class="bg-white/80 dark:bg-background-dark/60 rounded-lg border border-subtle-light dark:border-subtle-dark p-4 space-y-3">
+            <section
+                class="bg-white/80 dark:bg-background-dark/60 rounded-lg border border-subtle-light dark:border-subtle-dark p-4 space-y-3">
                 <div class="flex items-center justify-between">
                     <h2 class="text-lg font-bold text-text-light dark:text-text-dark">Productos</h2>
-                    <button type="button" class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold" id="new-product">Nuevo producto</button>
+                    <button type="button"
+                        class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold"
+                        id="new-product">Nuevo producto</button>
                 </div>
                 <div class="space-y-2" id="product-list">
                     <p class="text-sm text-subtle-text-light dark:text-subtle-text-dark">Cargando productos...</p>
                 </div>
             </section>
 
-            <section class="bg-white/80 dark:bg-background-dark/60 rounded-lg border border-subtle-light dark:border-subtle-dark p-4 space-y-4">
+            <section
+                class="bg-white/80 dark:bg-background-dark/60 rounded-lg border border-subtle-light dark:border-subtle-dark p-4 space-y-4">
                 <h2 class="text-lg font-bold text-text-light dark:text-text-dark">Formulario</h2>
                 <form class="space-y-4" id="product-form">
                     <div class="grid grid-cols-1 gap-3">
                         <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                             ID (slug, único)
-                            <input type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="id" placeholder="ej. valentino-uomo-born-in-roma-intense" />
+                            <input type="text"
+                                class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                name="id" placeholder="ej. valentino-uomo-born-in-roma-intense" />
                         </label>
                         <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                             Nombre
-                            <input required type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="name" />
+                            <input required type="text"
+                                class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                name="name" />
                         </label>
                         <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                             Marca
-                            <input required type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="brand" />
+                            <input required type="text"
+                                class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                name="brand" />
                         </label>
                         <div class="grid grid-cols-2 gap-3">
                             <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                                 Categoría
-                                <select class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="category">
+                                <select
+                                    class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="category">
                                     <option value="">Selecciona</option>
                                     <option value="Hombres">Hombres</option>
                                     <option value="Mujeres">Mujeres</option>
@@ -116,96 +138,140 @@
                             </label>
                             <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                                 Tamaño corto (lista)
-                                <input type="number" min="1" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="size" placeholder="10" />
+                                <input type="number" min="1"
+                                    class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="size" placeholder="10" />
                             </label>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
-                            <label class="text-sm font-semibold text-text-light dark:text-text-dark">
-                                Imagen (URL)
-                                <input type="url" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="image" />
-                            </label>
+
                             <label class="text-sm font-semibold text-text-light dark:text-text-dark">
                                 Texto alternativo
-                                <input type="text" class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="alt" />
+                                <input type="text"
+                                    class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="alt" />
                             </label>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <label class="flex items-center gap-2 text-sm font-semibold text-text-light dark:text-text-dark">
-                                <input type="checkbox" class="rounded border-subtle-light dark:border-subtle-dark" name="featured" />
-                                Destacado
+                        <label
+                            class="flex items-center gap-2 text-sm font-semibold text-text-light dark:text-text-dark">
+                            <input type="checkbox" class="rounded border-subtle-light dark:border-subtle-dark"
+                                name="featured" />
+                            Destacado
+                        </label>
+                        <label
+                            class="flex items-center gap-2 text-sm font-semibold text-text-light dark:text-text-dark">
+                            <input type="checkbox" class="rounded border-subtle-light dark:border-subtle-dark"
+                                name="comingSoon" />
+                            Próximamente
+                        </label>
+                    </div>
+                    <div class="grid grid-cols-1 gap-3">
+                        <label class="text-sm font-semibold text-text-light dark:text-text-dark">
+                            Imagen (URL)
+                            <input type="url"
+                                class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                name="image" placeholder="https://..." />
+                        </label>
+
+                        <div class="grid grid-cols-1 gap-3">
+                            <label class="text-sm font-semibold text-text-light dark:text-text-dark">
+                                Presentación (detalle)
+                                <select
+                                    class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="presentation">
+                                    <option value="">Selecciona</option>
+                                    <option value="Eau de Parfum">Eau de Parfum</option>
+                                    <option value="Eau de Toilette">Eau de Toilette</option>
+                                    <option value="Eau de Cologne">Eau de Cologne</option>
+                                    <option value="Parfum">Parfum</option>
+                                    <option value="Elixir">Elixir</option>
+                                    <option value="Intense">Intense</option>
+                                </select>
+                            </label>
+                            <label class="text-sm font-semibold text-text-light dark:text-text-dark">
+                                Tamaño de frasco original
+                                <select
+                                    class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="bottleSize">
+                                    <option value="">Selecciona</option>
+                                    <option value="50">50 ml</option>
+                                    <option value="75">75 ml</option>
+                                    <option value="100">100 ml</option>
+                                    <option value="125">125 ml</option>
+                                    <option value="150">150 ml</option>
+                                    <option value="200">200 ml</option>
+                                </select>
+                            </label>
+                            <label class="text-sm font-semibold text-text-light dark:text-text-dark">
+                                Descripción
+                                <textarea
+                                    class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    rows="4" name="description"></textarea>
                             </label>
                         </div>
-                    </div>
 
-                    <div class="grid grid-cols-1 gap-3">
-                        <label class="text-sm font-semibold text-text-light dark:text-text-dark">
-                            Presentación (detalle)
-                            <select class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="presentation">
-                                <option value="">Selecciona</option>
-                                <option value="Eau de Parfum">Eau de Parfum</option>
-                                <option value="Eau de Toilette">Eau de Toilette</option>
-                                <option value="Eau de Cologne">Eau de Cologne</option>
-                                <option value="Parfum">Parfum</option>
-                                <option value="Elixir">Elixir</option>
-                                <option value="Intense">Intense</option>
-                            </select>
-                        </label>
-                        <label class="text-sm font-semibold text-text-light dark:text-text-dark">
-                            Tamaño de frasco original
-                            <select class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="bottleSize">
-                                <option value="">Selecciona</option>
-                                <option value="50">50 ml</option>
-                                <option value="75">75 ml</option>
-                                <option value="100">100 ml</option>
-                                <option value="125">125 ml</option>
-                                <option value="150">150 ml</option>
-                                <option value="200">200 ml</option>
-                            </select>
-                        </label>
-                        <label class="text-sm font-semibold text-text-light dark:text-text-dark">
-                            Descripción
-                            <textarea class="mt-1 w-full rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" rows="4" name="description"></textarea>
-                        </label>
-                    </div>
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Opciones de precio
+                            </h3>
+                            <div class="grid grid-cols-1 gap-2" id="price-options">
+                                <div class="grid grid-cols-2 gap-2 price-row">
+                                    <input type="number" min="1"
+                                        class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                        placeholder="Tamaño (ej. 3)" data-price-size />
+                                    <input type="number" min="0"
+                                        class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                        placeholder="Precio (ej. 150)" data-price-value />
+                                </div>
+                            </div>
+                            <button type="button"
+                                class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold"
+                                id="add-price-option">Agregar opción</button>
+                        </div>
 
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Opciones de precio</h3>
-                        <div class="grid grid-cols-1 gap-2" id="price-options">
-                            <div class="grid grid-cols-2 gap-2 price-row">
-                                <input type="number" min="1" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Tamaño (ej. 3)" data-price-size />
-                                <input type="number" min="0" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Precio (ej. 150)" data-price-value />
+                        <div class="grid grid-cols-1 gap-3">
+                            <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Notas olfativas</h3>
+                            <div class="grid grid-cols-1 gap-2">
+                                <input type="text"
+                                    class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="notesTop" placeholder="Salida" />
+                                <input type="text"
+                                    class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="notesHeart" placeholder="Corazón" />
+                                <input type="text"
+                                    class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                    name="notesBase" placeholder="Fondo" />
                             </div>
                         </div>
-                        <button type="button" class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold" id="add-price-option">Agregar opción</button>
-                    </div>
 
-                    <div class="grid grid-cols-1 gap-3">
-                        <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Notas olfativas</h3>
-                        <div class="grid grid-cols-1 gap-2">
-                            <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="notesTop" placeholder="Salida" />
-                            <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="notesHeart" placeholder="Corazón" />
-                            <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" name="notesBase" placeholder="Fondo" />
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Más información (facts)</h3>
-                        <div class="grid grid-cols-1 gap-2" id="facts-list">
-                            <div class="grid grid-cols-2 gap-2 fact-row">
-                                <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Etiqueta (ej. Concentración)" data-fact-label />
-                                <input type="text" class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2" placeholder="Valor (ej. Eau de Parfum)" data-fact-value />
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Más información
+                                (facts)</h3>
+                            <div class="grid grid-cols-1 gap-2" id="facts-list">
+                                <div class="grid grid-cols-2 gap-2 fact-row">
+                                    <input type="text"
+                                        class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                        placeholder="Etiqueta (ej. Concentración)" data-fact-label />
+                                    <input type="text"
+                                        class="rounded-md border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2"
+                                        placeholder="Valor (ej. Eau de Parfum)" data-fact-value />
+                                </div>
                             </div>
+                            <button type="button"
+                                class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold"
+                                id="add-fact">Agregar dato</button>
                         </div>
-                        <button type="button" class="h-10 px-3 rounded-lg border border-subtle-light dark:border-subtle-dark bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark text-sm font-semibold" id="add-fact">Agregar dato</button>
-                    </div>
 
-                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <div class="flex items-center gap-2">
-                            <button type="submit" class="h-12 px-4 rounded-lg bg-primary text-white font-bold" id="save-product">Guardar</button>
-                            <button type="button" class="h-12 px-4 rounded-lg border border-red-200 text-red-600 font-semibold" id="delete-product">Eliminar</button>
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <div class="flex items-center gap-2">
+                                <button type="submit" class="h-12 px-4 rounded-lg bg-primary text-white font-bold"
+                                    id="save-product">Guardar</button>
+                                <button type="button"
+                                    class="h-12 px-4 rounded-lg border border-red-200 text-red-600 font-semibold"
+                                    id="delete-product">Eliminar</button>
+                            </div>
+                            <span class="text-sm text-subtle-text-light dark:text-subtle-text-dark"
+                                id="form-status"></span>
                         </div>
-                        <span class="text-sm text-subtle-text-light dark:text-subtle-text-dark" id="form-status"></span>
-                    </div>
                 </form>
             </section>
         </main>

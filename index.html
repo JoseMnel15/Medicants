@@ -8,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="styles.css" rel="stylesheet" />
     <script>
@@ -49,7 +50,8 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
     <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden has-fixed-header">
-        <header class="sticky-header grid grid-cols-3 items-center p-4 border-b border-subtle-light dark:border-subtle-dark bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
+        <header
+            class="sticky-header grid grid-cols-3 items-center p-4 border-b border-subtle-light dark:border-subtle-dark bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
             <div class="flex items-center gap-2">
                 <button class="p-2" type="button" aria-label="Abrir menú de navegación">
                     <span class="material-symbols-outlined">menu</span>
@@ -65,16 +67,22 @@
                 </button>
                 <a class="relative inline-flex p-2" aria-label="Abrir carrito" href="carrito.html">
                     <span class="material-symbols-outlined">shopping_cart</span>
-                    <span class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full bg-primary text-white text-[11px] leading-[18px] text-center font-bold hidden" data-cart-count>0</span>
+                    <span
+                        class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full bg-primary text-white text-[11px] leading-[18px] text-center font-bold hidden"
+                        data-cart-count>0</span>
                 </a>
             </div>
         </header>
         <div class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40" data-search-overlay></div>
-        <div class="hidden fixed inset-x-0 top-0 z-50 bg-background-light dark:bg-background-dark border-b border-subtle-light dark:border-subtle-dark shadow-md" data-search-panel>
+        <div class="hidden fixed inset-x-0 top-0 z-50 bg-background-light dark:bg-background-dark border-b border-subtle-light dark:border-subtle-dark shadow-md"
+            data-search-panel>
             <div class="p-4 flex items-center gap-3">
                 <span class="material-symbols-outlined text-text-light dark:text-text-dark">search</span>
-                <input type="text" placeholder="Busca por nombre o marca" class="flex-1 rounded-lg border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2 text-text-light dark:text-text-dark placeholder:text-subtle-text-light dark:placeholder:text-subtle-text-dark focus:outline-none" data-search-input />
-                <button type="button" class="p-2 text-text-light dark:text-text-dark" data-search-close aria-label="Cerrar buscador">
+                <input type="text" placeholder="Busca por nombre o marca"
+                    class="flex-1 rounded-lg border border-subtle-light dark:border-subtle-dark bg-transparent px-3 py-2 text-text-light dark:text-text-dark placeholder:text-subtle-text-light dark:placeholder:text-subtle-text-dark focus:outline-none"
+                    data-search-input />
+                <button type="button" class="p-2 text-text-light dark:text-text-dark" data-search-close
+                    aria-label="Cerrar buscador">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
@@ -82,35 +90,74 @@
         </div>
         <div class="@container">
             <div class="px-4 py-4">
-                <div class="flex min-h-[200px] flex-col gap-4 bg-cover bg-center bg-no-repeat items-center justify-center p-4 rounded-lg" role="img" aria-label="Frascos de perfume iluminados suavemente sobre un fondo oscuro." style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("img/portada.png");'>
-                    <div class="flex flex-col gap-2 text-center">
-                        <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em]">
-                            CATÁLOGO 2025
-                        </h2>
-                        <p class="text-white text-sm font-normal leading-normal">
-                            Hasta 10% de descuento
-                        </p>
+                <div class="relative overflow-hidden rounded-lg min-h-[220px]" id="home-carousel">
+                    <div class="flex transition-transform duration-700 ease-in-out h-full" id="carousel-track">
+                        <!-- Slide 1 -->
+                        <div class="min-w-full flex flex-col gap-2 bg-cover bg-center bg-no-repeat items-center justify-center p-8 h-[250px]"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("img/portada.png");'>
+                            <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] text-center">
+                                CATÁLOGO 2025
+                            </h2>
+                            <p class="text-white text-sm font-normal leading-normal text-center">
+                                Hasta 10% de descuento en seleccionados
+                            </p>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="min-w-full flex flex-col gap-2 bg-cover bg-center bg-no-repeat items-center justify-center p-8 h-[250px]"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("img/portada.png");'>
+                            <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] text-center">
+                                NUEVOS ARRIBOS
+                            </h2>
+                            <p class="text-white text-sm font-normal leading-normal text-center">
+                                Descubre las fragancias de temporada
+                            </p>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="min-w-full flex flex-col gap-2 bg-cover bg-center bg-no-repeat items-center justify-center p-8 h-[250px]"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("img/portada.png");'>
+                            <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] text-center">
+                                ENVÍOS SEGUROS
+                            </h2>
+                            <p class="text-white text-sm font-normal leading-normal text-center">
+                                A todo México garantizado
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Indicators -->
+                    <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2" id="carousel-dots">
+                        <button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity"
+                            aria-label="Slide 1"></button>
+                        <button class="w-2 h-2 rounded-full bg-white/50 transition-opacity"
+                            aria-label="Slide 2"></button>
+                        <button class="w-2 h-2 rounded-full bg-white/50 transition-opacity"
+                            aria-label="Slide 3"></button>
                     </div>
                 </div>
             </div>
         </div>
         <main class="flex flex-col gap-6 w-full">
             <section class="flex flex-col w-full px-4">
-                <h2 class="text-text-light dark:text-text-dark text-xl font-bold text-center tracking-[-0.015em] pb-4 pt-2">Productos Populares</h2>
-                <div class="grid grid-cols-2 gap-4" data-product-list data-product-filter="featured" data-card-variant="featured" data-limit="4"></div>
+                <h2
+                    class="text-text-light dark:text-text-dark text-xl font-bold text-center tracking-[-0.015em] pb-4 pt-2">
+                    Productos Populares</h2>
+                <div class="grid grid-cols-2 gap-4" data-product-list data-product-filter="featured"
+                    data-card-variant="featured" data-limit="4"></div>
             </section>
             <div class="px-4 pt-2 pb-8">
-                <a href="catalago.html" class="w-full h-12 flex items-center justify-center rounded-lg bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark font-bold">
-    Ver todo el catálogo
-  </a>
+                <a href="catalago.html"
+                    class="w-full h-12 flex items-center justify-center rounded-lg bg-subtle-light dark:bg-subtle-dark text-text-light dark:text-text-dark font-bold">
+                    Ver todo el catálogo
+                </a>
             </div>
 
         </main>
         <div class="floating-whatsapp-wrapper">
             <span class="floating-whatsapp-bubble" aria-hidden="true">Envíanos un mensaje para hacer tu pedido</span>
-            <a href="https://wa.me/5217671029706?text=Hola%20me%20interesan%20decants." class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <a href="https://wa.me/5217671029706?text=Hola%20me%20interesan%20decants." class="floating-whatsapp"
+                target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
                 <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-                    <path d="M16 3a13 13 0 0 0-11 19.87L4 29l6.3-1.65A13 13 0 1 0 16 3zm7.19 17.5c-.28.79-1.64 1.45-2.25 1.55-.58.09-1.3.13-2.09-.13-.48-.15-1.1-.36-1.89-.7-3.33-1.43-5.49-4.81-5.64-5.03-.15-.22-1.35-1.8-1.35-3.43 0-1.64.85-2.45 1.16-2.78.28-.3.74-.44 1.18-.44h.86c.26 0 .53.18.6.41.24.6.78 1.9.85 2.04.07.14.1.3.02.46-.07.16-.11.25-.22.39-.12.14-.27.31-.4.46-.13.15-.27.31-.12.6.15.3.68 1.12 1.48 1.82 1.02.91 1.89 1.21 2.16 1.34.27.13.42.11.57-.07.15-.18.67-.78.85-1.05.17-.27.34-.22.57-.13.23.09 1.47.69 1.72.81.25.13.42.19.48.3.07.11.07.84-.21 1.62z" />
+                    <path
+                        d="M16 3a13 13 0 0 0-11 19.87L4 29l6.3-1.65A13 13 0 1 0 16 3zm7.19 17.5c-.28.79-1.64 1.45-2.25 1.55-.58.09-1.3.13-2.09-.13-.48-.15-1.1-.36-1.89-.7-3.33-1.43-5.49-4.81-5.64-5.03-.15-.22-1.35-1.8-1.35-3.43 0-1.64.85-2.45 1.16-2.78.28-.3.74-.44 1.18-.44h.86c.26 0 .53.18.6.41.24.6.78 1.9.85 2.04.07.14.1.3.02.46-.07.16-.11.25-.22.39-.12.14-.27.31-.4.46-.13.15-.27.31-.12.6.15.3.68 1.12 1.48 1.82 1.02.91 1.89 1.21 2.16 1.34.27.13.42.11.57-.07.15-.18.67-.78.85-1.05.17-.27.34-.22.57-.13.23.09 1.47.69 1.72.81.25.13.42.19.48.3.07.11.07.84-.21 1.62z" />
                 </svg>
             </a>
         </div>

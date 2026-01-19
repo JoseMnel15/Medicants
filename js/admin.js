@@ -147,6 +147,7 @@ const validateConnection = async () => {
   }
 };
 
+
 const renderProducts = () => {
   if (!els.list) return;
   if (!state.products.length) {
@@ -227,6 +228,10 @@ const fillForm = (product) => {
   field("featured").checked = Boolean(product.featured);
 
   const detail = product.detail || {};
+  if (field("comingSoon")) {
+    field("comingSoon").checked = Boolean(detail.comingSoon);
+  }
+
   field("presentation").value = detail.presentation || "";
   field("bottleSize").value = stripMl(detail.bottleSize);
   field("description").value = detail.description || "";
@@ -262,6 +267,7 @@ const getFormData = () => {
   if (field("presentation").value) detail.presentation = field("presentation").value;
   if (field("bottleSize").value) detail.bottleSize = formatMl(field("bottleSize").value);
   if (field("description").value) detail.description = field("description").value;
+  if (field("comingSoon") && field("comingSoon").checked) detail.comingSoon = true;
 
   const priceOptions = [...els.priceOptions.querySelectorAll(".price-row")]
     .map((row) => {

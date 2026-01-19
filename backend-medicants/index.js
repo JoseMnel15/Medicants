@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
 
+
 const app = express();
 
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || process.env.API_KEY || "dev-token";
@@ -15,16 +16,16 @@ if (!DATABASE_URL) {
 
 const ssl =
   process.env.PGSSL === "true" ||
-  process.env.PGSSLMODE === "require" ||
-  process.env.PGSSLMODE === "verify-full"
+    process.env.PGSSLMODE === "require" ||
+    process.env.PGSSLMODE === "verify-full"
     ? { rejectUnauthorized: false }
     : false;
 
 const pool = DATABASE_URL
   ? new Pool({
-      connectionString: DATABASE_URL,
-      ssl,
-    })
+    connectionString: DATABASE_URL,
+    ssl,
+  })
   : null;
 
 const ensureTable = async () => {
@@ -98,7 +99,7 @@ app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/", (req, res) => {
-  res.json({ mensaje: "API funcionando", version: "1.1.0" });
+  res.json({ mensaje: "API funcionando", version: "1.2.0" });
 });
 
 app.get("/products", async (req, res) => {

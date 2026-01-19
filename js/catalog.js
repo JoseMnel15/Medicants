@@ -4,6 +4,7 @@ const staticProducts = [];
 
 let productsReady = null;
 let cachedProducts = null;
+let activeCategory = "all";
 
 const normalizeProduct = (product) => ({
   ...product,
@@ -46,10 +47,11 @@ const variantRenderers = {
   featured: (product) => {
     const href = product.url || `detalle.html?id=${product.id}`;
     return `
-      <a href="${href}" class="block no-underline">
-        <div class="flex flex-col text-center">
+      <a href="${href}" class="block no-underline ${product.detail?.comingSoon ? "opacity-75 pointer-events-none" : ""}">
+        <div class="flex flex-col text-center relative">
+            ${product.detail?.comingSoon ? '<div class="absolute inset-0 z-10 flex items-center justify-center bg-black/20 rounded-lg"><span class="bg-black/70 text-white text-xs px-2 py-1 rounded font-bold uppercase tracking-wider">Próximamente</span></div>' : ''}
           <div class="w-full bg-subtle-light/60 dark:bg-subtle-dark/60 rounded-lg flex items-center justify-center p-2 mb-3">
-            <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover bg-transparent rounded-md" role="img" aria-label="${product.alt}" style="background-image: url('${product.image}');"></div>
+            <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover bg-transparent rounded-md ${product.detail?.comingSoon ? "grayscale" : ""}" role="img" aria-label="${product.alt}" style="background-image: url('${product.image}');"></div>
           </div>
           <h3 class="text-text-light dark:text-text-dark text-sm font-bold leading-tight">${product.name}</h3>
           <p class="text-subtle-text-light dark:text-subtle-text-dark text-xs font-normal leading-normal">por ${product.brand}</p>
@@ -62,10 +64,11 @@ const variantRenderers = {
   catalog: (product) => {
     const href = product.url || `detalle.html?id=${product.id}`;
     return `
-      <a href="${href}" class="block no-underline">
-        <div class="flex flex-col">
+      <a href="${href}" class="block no-underline ${product.detail?.comingSoon ? "opacity-75 pointer-events-none" : ""}">
+        <div class="flex flex-col relative">
+            ${product.detail?.comingSoon ? '<div class="absolute top-0 right-0 z-10 m-2"><span class="bg-black/70 text-white text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider">Próximamente</span></div>' : ''}
           <div class="w-full bg-subtle-light dark:bg-subtle-dark rounded-lg aspect-square mb-2 overflow-hidden">
-            <img src="${product.image}" alt="${product.alt}" class="w-full h-full object-contain rounded-lg" />
+            <img src="${product.image}" alt="${product.alt}" class="w-full h-full object-contain rounded-lg ${product.detail?.comingSoon ? "grayscale opacity-60" : ""}" />
           </div>
           <h3 class="text-text-light dark:text-text-dark text-sm font-semibold leading-tight">${product.name}</h3>
           <p class="text-subtle-text-light dark:text-subtle-text-dark text-xs">por ${product.brand}</p>
@@ -131,6 +134,10 @@ const renderProductLists = async () => {
       list = list.filter((product) => product.featured);
     }
 
+    if (activeCategory !== "all") {
+      list = list.filter((product) => product.category === activeCategory);
+    }
+
     if (container.dataset.productIds) {
       const ids = container.dataset.productIds.split(",").map((id) => id.trim());
       list = list.filter((product) => ids.includes(product.id));
@@ -152,7 +159,77 @@ document.addEventListener("DOMContentLoaded", async () => {
   await renderProductLists();
   syncWhatsAppBubbleAnimation();
   setupSearch();
+  setupFilters();
+  setupCarousel();
 });
+
+const setupCarousel = () => {
+  const track = document.getElementById("carousel-track");
+  const dots = document.getElementById("carousel-dots")?.querySelectorAll("button");
+  if (!track || !dots || !dots.length) return;
+
+  let currentSlide = 0;
+  const slideCount = dots.length;
+  let intervalId = null;
+
+  const update = (index) => {
+    currentSlide = index;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.remove("bg-white/50");
+        dot.classList.add("bg-white", "opacity-100");
+      } else {
+        dot.classList.add("bg-white/50");
+        dot.classList.remove("bg-white", "opacity-100");
+      }
+    });
+  };
+
+  const next = () => {
+    update((currentSlide + 1) % slideCount);
+  };
+
+  const start = () => {
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(next, 5000);
+  };
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      update(i);
+      start(); // reset timer
+    });
+  });
+
+  start();
+};
+
+const setupFilters = () => {
+  const filters = document.getElementById("category-filters");
+  if (!filters) return;
+
+  filters.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-category]");
+    if (!btn) return;
+
+    activeCategory = btn.dataset.category;
+
+    // Visual updates
+    filters.querySelectorAll("button").forEach(b => {
+      const isSelected = b.dataset.category === activeCategory;
+      if (isSelected) {
+        b.classList.remove("bg-subtle-light", "dark:bg-subtle-dark", "text-text-light", "dark:text-text-dark");
+        b.classList.add("bg-primary", "text-white", "border-primary");
+      } else {
+        b.classList.add("bg-subtle-light", "dark:bg-subtle-dark", "text-text-light", "dark:text-text-dark");
+        b.classList.remove("bg-primary", "text-white", "border-primary");
+      }
+    });
+
+    renderProductLists();
+  });
+};
 
 const setupSearch = () => {
   const toggleButtons = document.querySelectorAll("[data-search-toggle]");
