@@ -266,8 +266,13 @@ const getFormData = () => {
   const detail = {};
   if (field("presentation").value) detail.presentation = field("presentation").value;
   if (field("bottleSize").value) detail.bottleSize = formatMl(field("bottleSize").value);
+
   if (field("description").value) detail.description = field("description").value;
-  if (field("comingSoon") && field("comingSoon").checked) detail.comingSoon = true;
+
+  // Explicitly set boolean to overwrite existing value in backend merge
+  if (field("comingSoon")) {
+    detail.comingSoon = field("comingSoon").checked;
+  }
 
   const priceOptions = [...els.priceOptions.querySelectorAll(".price-row")]
     .map((row) => {
