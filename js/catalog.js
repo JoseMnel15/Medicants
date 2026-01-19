@@ -220,11 +220,11 @@ const setupFilters = () => {
       const isSelected = b.dataset.category === activeCategory;
       if (isSelected) {
         // Active state
-        b.classList.remove("bg-subtle-light", "dark:bg-subtle-dark", "text-text-light", "dark:text-text-dark");
+        b.classList.remove("bg-subtle-light", "dark:bg-subtle-dark", "text-text-light", "dark:text-text-dark", "hover:bg-subtle-text-light/10", "dark:hover:bg-subtle-dark/80");
         b.classList.add("bg-primary", "text-white", "border-primary");
       } else {
         // Inactive state
-        b.classList.add("bg-subtle-light", "dark:bg-subtle-dark", "text-text-light", "dark:text-text-dark");
+        b.classList.add("bg-subtle-light", "dark:bg-subtle-dark", "text-text-light", "dark:text-text-dark", "hover:bg-subtle-text-light/10", "dark:hover:bg-subtle-dark/80");
         b.classList.remove("bg-primary", "text-white", "border-primary");
       }
     });
