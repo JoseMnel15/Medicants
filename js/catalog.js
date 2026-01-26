@@ -284,18 +284,24 @@ const setupSearch = () => {
 
     resultsContainer.innerHTML = list
       .map(
-        (product) => `
-          <a href="${product.url}" class="flex items-center gap-3 py-2 border-b border-subtle-light dark:border-subtle-dark no-underline">
+        (product) => {
+          const isComingSoon = product.detail?.comingSoon;
+          const href = isComingSoon ? "javascript:void(0)" : product.url || `detalle.html?id=${product.id}`;
+          const opacityClass = isComingSoon ? "opacity-60 pointer-events-none grayscale" : "";
+
+          return `
+          <a href="${href}" class="flex items-center gap-3 py-2 border-b border-subtle-light dark:border-subtle-dark no-underline ${opacityClass}">
             <div class="w-12 h-12 rounded-md bg-subtle-light dark:bg-subtle-dark overflow-hidden flex items-center justify-center">
-              <img src="${product.image}" alt="${product.alt}" class="w-full h-full object-cover" />
+              <img src="${product.image}" alt="${product.alt}" class="w-full h-full object-cover ${isComingSoon ? "grayscale" : ""}" />
             </div>
             <div class="flex flex-col">
               <span class="text-sm font-semibold text-text-light dark:text-text-dark">${product.name}</span>
               <span class="text-xs text-subtle-text-light dark:text-subtle-text-dark">${product.brand}</span>
+              ${isComingSoon ? '<span class="text-[10px] font-bold bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded w-fit mt-0.5">PRÓXIMAMENTE</span>' : ''}
             </div>
           </a>
-        `,
-      )
+        `;
+        })
       .join("");
   };
 

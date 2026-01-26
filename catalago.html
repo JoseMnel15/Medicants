@@ -92,16 +92,47 @@
         </div>
         <div class="@container">
             <div class="px-4 py-4">
-                <div class="flex min-h-[200px] flex-col gap-4 bg-cover bg-center bg-no-repeat items-center justify-center p-4 rounded-lg"
-                    role="img" aria-label="Frascos de perfume iluminados suavemente sobre un fondo oscuro."
-                    style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("img/portada.png");'>
-                    <div class="flex flex-col gap-2 text-center">
-                        <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em]">
-                            CATÁLOGO 2025
-                        </h2>
-                        <p class="text-white text-sm font-normal leading-normal">
-                            Hasta 10% de descuento
-                        </p>
+                <div class="relative overflow-hidden rounded-lg min-h-[220px]" id="home-carousel">
+                    <div class="flex transition-transform duration-700 ease-in-out h-full" id="carousel-track">
+                        <!-- Slide 1 -->
+                        <div class="min-w-full flex flex-col gap-2 bg-cover bg-center bg-no-repeat items-center justify-center p-8 h-[250px]"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("img/portada.png");'>
+                            <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] text-center">
+                                CATÁLOGO 2025
+                            </h2>
+                            <p class="text-white text-sm font-normal leading-normal text-center">
+                                Hasta 10% de descuento en seleccionados
+                            </p>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="min-w-full flex flex-col gap-2 bg-cover bg-center bg-no-repeat items-center justify-center p-8 h-[250px]"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("img/portada.png");'>
+                            <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] text-center">
+                                NUEVOS ARRIBOS
+                            </h2>
+                            <p class="text-white text-sm font-normal leading-normal text-center">
+                                Descubre las fragancias de temporada
+                            </p>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="min-w-full flex flex-col gap-2 bg-cover bg-center bg-no-repeat items-center justify-center p-8 h-[250px]"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("img/portada.png");'>
+                            <h2 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] text-center">
+                                ENVÍOS SEGUROS
+                            </h2>
+                            <p class="text-white text-sm font-normal leading-normal text-center">
+                                A todo México garantizado
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Indicators -->
+                    <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2" id="carousel-dots">
+                        <button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity"
+                            aria-label="Slide 1"></button>
+                        <button class="w-2 h-2 rounded-full bg-white/50 transition-opacity"
+                            aria-label="Slide 2"></button>
+                        <button class="w-2 h-2 rounded-full bg-white/50 transition-opacity"
+                            aria-label="Slide 3"></button>
                     </div>
                 </div>
             </div>
